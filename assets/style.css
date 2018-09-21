@@ -1,0 +1,49 @@
+/* font style */
+@font-face{
+  font-family: "Pirate";
+  src: url("./__MACOSX/pirates-of-the-caribbean/._Caribbean.ttf")
+}
+
+body{
+  font-family: "Pirate";
+  height: 100%;
+  width: 100%;
+}
+
+/* grid layout */
+.container{
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 15% 70% 15%;
+  grid-template-areas: 
+    "header header header"
+    "leftSidebar main rightSidebar"
+    "footer footer footer";
+  height: 100vh;
+}
+ /* main area */
+.main{
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.box{
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.box .box {
+  background-color: #ccc;
+  color: #444;
+}
+.box .box .box {
+  background-color: yellow;
+  color: green;
+
+}
+

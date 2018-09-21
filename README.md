@@ -1,0 +1,2 @@
+# Pirates Of The Caribbean Trivia
+...This is a trivia game with some questions on Pirates of the Caribbean series. This game will contain 10 questions with 4 options each. Answers of the wrong questions will be displayed at the end.
