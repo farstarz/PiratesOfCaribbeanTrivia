@@ -8,6 +8,7 @@ body{
   font-family: "Pirate";
   height: 100%;
   width: 100%;
+  
 }
 
 /* grid layout */
@@ -20,6 +21,9 @@ body{
     "leftSidebar main rightSidebar"
     "footer footer footer";
   height: 100vh;
+  background-image: url("./images/Pirate-Bay-Map.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
  /* main area */
 .main{
@@ -28,13 +32,16 @@ body{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 10px;
+  background-image: url("./images/vintage-page.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .box{
   background-color: #444;
   color: #fff;
   border-radius: 5px;
   padding: 20px;
-  font-size: 150%;
+  font-size: 20px;
 }
 
 .box .box {
@@ -42,8 +49,22 @@ body{
   color: #444;
 }
 .box .box .box {
-  background-color: yellow;
-  color: green;
+  background: transparent;
+  color: #471d0d;
 
+}
+
+.command{
+  height: 30px;
+  width: 100px;
+  background-color: #461e0f;
+  color: #f2d798;
+}
+
+#answers{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
