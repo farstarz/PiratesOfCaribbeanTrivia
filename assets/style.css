@@ -61,6 +61,13 @@ body{
   color: #f2d798;
 }
 
+#questions{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 #answers{
   display: flex;
   flex-flow: row wrap;

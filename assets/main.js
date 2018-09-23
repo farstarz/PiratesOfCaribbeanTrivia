@@ -1,10 +1,7 @@
-// console.log("anything");
 $(document).ready(function(){
-  // $("#questions").html("testing");
-  
+  // question index
+  var index= 0;
   var trivia = {
-    // question index
-    index: 0,
     // store questions in an array
     questions: ["Q.1 Jack Sparrow...*ahem*...Captain Jack Sparrow is first seen entering Port Royal in POTC1, on a small sinking boat. Who did he steal trivia boat from?",
                 "Q.2 Where is Will Turner first seen in the first POTC?",
@@ -27,52 +24,52 @@ $(document).ready(function(){
     userChoice: [],
     // display question
     updateQuestion: function(){
-      // console.log("updateQuestion Ran: "+ trivia.index+"th time");
-      // document.getElementById("questions").innerHTML = "Paragraph changed!";
-      $("#questions").html("<h2>"+trivia.questions[trivia.index]+"</h2>");
-      // console.log(i);
-      $("#answers").html("<input type=\"radio\" name=\"option1\">"+trivia.answers1[trivia.index]+"</input><input type=\"radio\" name=\"option2\">"+trivia.answers2[trivia.index]+"</input><input type=\"radio\" name=\"option3\">"+trivia.answers3[trivia.index]+"</input><input type=\"radio\" name=\"option4\">"+trivia.answers4[trivia.index]+"</input><input type=\"radio\" name=\"option5\">"+trivia.answers5[trivia.index]+"</input>");
-      $("#command").html("<button class=\"command\">Next Question</button>");
-      // trivia.getChoice();
-      // console.log("i was: "+trivia.index);
-      trivia.index++;
-      // console.log("i is: "+trivia.index);
+      console.log("updateQuestion Ran:");
+      $("#questions").html("<h2>"+trivia.questions[index]+"</h2>");
+      $("#answers").html("<input type=\"radio\" name=\"question"+index+"\" value=\"1\">"+trivia.answers1[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"2\">"+trivia.answers2[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"3\">"+trivia.answers3[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"4\">"+trivia.answers4[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"5\">"+trivia.answers5[index]+"</input>");
+      index = index +1;
       trivia.nextQuestion();
           
       },
     // store answer to a variable
     getChoice: function(){
-      trivia.userChoice[trivia.index] = $("input:radio:checked").name;
-      // console.log(i);
+      trivia.userChoice[index-1] = $("input[name=\"question"+(index-1)+"\"]:checked").val();
+      console.log("getChoice ran");
     },
     // next question
     nextQuestion: function(){
-      // console.log("nextQuestion Ran: "+ trivia.index+"th time");
-      $(".command").html("Next Question");
-      $(".command").on("click", function(){
-        if(trivia.index<9){  
-        
-          // console.log(trivia.index);
+      console.log("nextQuestion Ran:");
+      if(index<9){
+        $(".command").html("<h2 id=\"NextQ\">"+"Next Question</h2>").on("click", function(){
           trivia.getChoice();
           trivia.updateQuestion();
-          
-        }else{
-          console.log(trivia.index);
-          trivia.getChoice();
+        });  
+      }else{
+        $(".command").html("<h2 id=\"ShowR\">"+"Show Result</h2>").on("click", function(){
+          console.log(index);
           trivia.showResult();
-        };
-      });  
+        });
+      };
     },
     // show result
     showResult: function(){
-      $("#questions").html("<h3>"+trivia.userChoice+"</h3>");
+      trivia.userChoice.forEach(element => {
+        $("#questions").append("<h3>Option "+element+"</h3>");  
+      });
+      $("#answers").empty();
+      $(".command").html("<h2 id=\"ResetQ\">"+"Reset Quiz").on("click",function(){
+        trivia.reset();
+      });
+      // $("#questions").html("<h3>Option "+trivia.userChoice+"</h3>");
 
+    },
+    reset: function(){
+      console.log("reset ran");
+      index = 0;
+      trivia.userChoice=[];
+      trivia.updateQuestion();
     } 
   };
-  // console.log("2");
   trivia.updateQuestion();
-  // console.log("3");
-  // $("#questions").html("<h4>"+trivia.questions[trivia.index]+"</h4>");
-  // console.log("method ran 2");
 });
 
