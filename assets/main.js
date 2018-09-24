@@ -27,31 +27,24 @@ $(document).ready(function(){
       console.log("updateQuestion Ran:");
       $("#questions").html("<h2>"+trivia.questions[index]+"</h2>");
       $("#answers").html("<input type=\"radio\" name=\"question"+index+"\" value=\"1\">"+trivia.answers1[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"2\">"+trivia.answers2[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"3\">"+trivia.answers3[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"4\">"+trivia.answers4[index]+"</input><input type=\"radio\" name=\"question"+index+"\" value=\"5\">"+trivia.answers5[index]+"</input>");
-      // index = index +1;
-      // trivia.nextQuestion();
-          
-      },
+      console.log(index);
+      index++;
+      console.log(index);
+      // trivia.getChoice();
+    },
     // store answer to a variable
     getChoice: function(){
       trivia.userChoice[index-1] = $("input[name=\"question"+(index-1)+"\"]:checked").val();
       console.log("getChoice ran");
+      // trivia.nextQuestion();
     },
     // next question
     nextQuestion: function(){
       console.log("nextQuestion Ran:");
-      // if(index<9){
-        $(".command").html("<h2 id=\"NextQ\">"+"Next Question</h2>");
-        // .on("click", function(){
-        //   trivia.getChoice();
-        //   trivia.updateQuestion();
-        // });  
-      // }else{
-        $(".command").html("<h2 id=\"ShowR\">"+"Show Result</h2>");
-        // .on("click", function(){
-        //   console.log(index);
-        //   trivia.showResult();
-        // });
-      // };
+      $(".command").html("<h2 id=\"NextQ\">"+"Next Question</h2>").on("click",function(){
+      // trivia.updateQuestion();
+      // index++;
+      });
     },
     // show result
     showResult: function(){
@@ -61,30 +54,45 @@ $(document).ready(function(){
       });
       $("#answers").empty();
       $(".command").html("<h2 id=\"ResetQ\">"+"Reset Quiz").on("click",function(){
-        // trivia.reset();
       });
-      // $("#questions").html("<h3>Option "+trivia.userChoice+"</h3>");
-
     },
     reset: function(){
-      console.log("reset ran");
-      index = 0;
-      trivia.userChoice=[];
-      trivia.updateQuestion();
+      $("#ResetQ").on("click",function(){
+        console.log("reset ran");
+        index = 0;
+        trivia.userChoice=[];
+        // trivia.updateQuestion();
+      });
     } 
   };
-  // trivia.updateQuestion();
   //alternative method
-  for(index = 0;index<8;index++){
-    trivia.updateQuestion();
-    trivia.getChoice();
-    trivia.nextQuestion();
-  }
+  // for(index = 0;index<8;){
+    new Promise(() => {
+      trivia.updateQuestion();
+      resolve(1);
+      // console.log(index);
+    }).then(() => {
+      trivia.getChoice();
+      resolve(1);
+    }).then(() => {
+      trivia.nextQuestion();
+      resolve(1);
+    });
+  // }
   if(index===9){
-    trivia.updateQuestion();
-    trivia.getChoice();
-    trivia.showResult();
-    trivia.reset();
+    new Promise(() => {
+      trivia.updateQuestion();
+      resolve(1);
+    }).then(() => {
+      trivia.getChoice();
+      resolve(1);
+    }).then(() => {
+      trivia.showResult();
+      resolve(1);
+    }).then(() => {
+      trivia.reset();
+      resolve(1);  
+    });
   }
 });
 
