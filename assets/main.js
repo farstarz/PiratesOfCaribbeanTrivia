@@ -53,6 +53,7 @@ $(document).ready(function(){
     },
     // show result
     showResult: function(){
+      $("#questions").empty();
       trivia.userChoice.forEach(element => {
         $("#questions").append("<h3>Option "+element+"</h3>");  
       });
